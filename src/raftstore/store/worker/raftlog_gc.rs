@@ -60,7 +60,7 @@ pub struct Runner {
 
 impl Runner {
     pub fn new(ch: Option<Sender<TaskRes>>) -> Runner {
-        Runner { ch: ch }
+        Runner { ch }
     }
 
     /// Do the gc job and return the count of log collected.
@@ -101,7 +101,7 @@ impl Runner {
             .as_ref()
             .unwrap()
             .send(TaskRes {
-                collected: collected,
+                collected,
             })
             .unwrap();
     }

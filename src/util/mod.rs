@@ -381,7 +381,7 @@ impl<T> RingQueue<T> {
     pub fn with_capacity(cap: usize) -> RingQueue<T> {
         RingQueue {
             buf: VecDeque::with_capacity(cap),
-            cap: cap,
+            cap,
         }
     }
 
@@ -435,7 +435,7 @@ impl<T> MustConsumeVec<T> {
     #[inline]
     pub fn with_capacity(tag: &'static str, cap: usize) -> MustConsumeVec<T> {
         MustConsumeVec {
-            tag: tag,
+            tag,
             v: Vec::with_capacity(cap),
         }
     }

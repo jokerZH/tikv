@@ -40,7 +40,7 @@ impl RegionSnapshot {
 
     pub fn from_snapshot(snap: SyncSnapshot, region: Region) -> RegionSnapshot {
         RegionSnapshot {
-            snap: snap,
+            snap,
             region: Arc::new(region),
         }
     }
@@ -192,11 +192,11 @@ impl RegionIterator {
         let end_key = iter_opt.upper_bound().unwrap().to_vec();
         let iter = snap.db_iterator(iter_opt);
         RegionIterator {
-            iter: iter,
+            iter,
             valid: false,
-            start_key: start_key,
-            end_key: end_key,
-            region: region,
+            start_key,
+            end_key,
+            region,
         }
     }
 
@@ -212,11 +212,11 @@ impl RegionIterator {
         let end_key = iter_opt.upper_bound().unwrap().to_vec();
         let iter = snap.db_iterator_cf(cf, iter_opt).unwrap();
         RegionIterator {
-            iter: iter,
+            iter,
             valid: false,
-            start_key: start_key,
-            end_key: end_key,
-            region: region,
+            start_key,
+            end_key,
+            region,
         }
     }
 

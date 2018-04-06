@@ -46,8 +46,8 @@ impl SelectionExecutor {
             conditions: box_try!(Expression::batch_build(&mut ctx, conditions)),
             cols: columns_info,
             related_cols_offset: visitor.column_offsets(),
-            ctx: ctx,
-            src: src,
+            ctx,
+            src,
             count: 0,
             first_collect: true,
         })

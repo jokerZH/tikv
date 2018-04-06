@@ -132,15 +132,15 @@ impl<T: RaftStoreRouter, S: StoreAddrResolver + 'static> Server<T, S> {
 
         let svr = Server {
             env: Arc::clone(&env),
-            grpc_server: grpc_server,
+            grpc_server,
             local_addr: addr,
-            trans: trans,
-            raft_router: raft_router,
-            storage: storage,
-            end_point_worker: end_point_worker,
-            snap_mgr: snap_mgr,
-            snap_worker: snap_worker,
-            pd_scheduler: pd_scheduler,
+            trans,
+            raft_router,
+            storage,
+            end_point_worker,
+            snap_mgr,
+            snap_worker,
+            pd_scheduler,
         };
 
         Ok(svr)

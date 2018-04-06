@@ -165,9 +165,9 @@ impl ImportDir {
         fs::create_dir_all(&temp_dir)?;
         fs::create_dir_all(&clone_dir)?;
         Ok(ImportDir {
-            root_dir: root_dir,
-            temp_dir: temp_dir,
-            clone_dir: clone_dir,
+            root_dir,
+            temp_dir,
+            clone_dir,
         })
     }
 
@@ -269,8 +269,8 @@ impl ImportFile {
             .create_new(true)
             .open(&path.temp)?;
         Ok(ImportFile {
-            meta: meta,
-            path: path,
+            meta,
+            path,
             file: Some(file),
             digest: crc32::Digest::new(crc32::IEEE),
         })

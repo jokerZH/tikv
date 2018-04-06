@@ -56,12 +56,12 @@ impl Scanner {
         let scanner = Self::range_scanner(store, scan_mode, key_only, &range)?;
 
         Ok(Scanner {
-            scan_mode: scan_mode,
-            scan_on: scan_on,
-            key_only: key_only,
-            seek_key: seek_key,
-            scanner: scanner,
-            range: range,
+            scan_mode,
+            scan_on,
+            key_only,
+            seek_key,
+            scanner,
+            range,
             no_more: false,
             statistics_cache: Statistics::default(),
         })

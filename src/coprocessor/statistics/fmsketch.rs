@@ -30,7 +30,7 @@ impl FMSketch {
     pub fn new(max_size: usize) -> FMSketch {
         FMSketch {
             mask: 0,
-            max_size: max_size,
+            max_size,
             hash_set: HashSet::with_capacity(max_size + 1),
         }
     }

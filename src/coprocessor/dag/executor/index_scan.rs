@@ -66,15 +66,15 @@ impl IndexScanExecutor {
         let col_ids = cols.iter().map(|c| c.get_column_id()).collect();
 
         Ok(IndexScanExecutor {
-            store: store,
-            desc: desc,
-            col_ids: col_ids,
-            pk_col: pk_col,
+            store,
+            desc,
+            col_ids,
+            pk_col,
             key_ranges: key_ranges.into_iter().peekable(),
             current_range: None,
             scan_range: KeyRange::default(),
             scanner: None,
-            unique: unique,
+            unique,
             count: 0,
             metrics: Default::default(),
             first_collect: true,
@@ -89,9 +89,9 @@ impl IndexScanExecutor {
         box_try!(table::check_table_ranges(&key_ranges));
         let col_ids: Vec<i64> = (0..cols).collect();
         Ok(IndexScanExecutor {
-            store: store,
+            store,
             desc: false,
-            col_ids: col_ids,
+            col_ids,
             pk_col: None,
             key_ranges: key_ranges.into_iter().peekable(),
             current_range: None,

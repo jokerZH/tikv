@@ -61,9 +61,9 @@ impl TableScanExecutor {
         }
 
         Ok(TableScanExecutor {
-            store: store,
-            desc: desc,
-            col_ids: col_ids,
+            store,
+            desc,
+            col_ids,
             key_ranges: key_ranges.into_iter().peekable(),
             current_range: None,
             scan_range: KeyRange::default(),
