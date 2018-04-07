@@ -12,17 +12,17 @@
 // limitations under the License.
 
 use super::sync_storage::SyncStorage;
+use super::util::new_raft_storage_with_store_count;
 use kvproto::kvrpcpb::{Context, LockInfo};
-use tikv::storage::{self, make_key, Key, KvPair, Mutation, Value};
-use tikv::storage::mvcc::{self, MAX_TXN_WRITE_SIZE};
-use tikv::storage::txn;
 use raftstore::cluster::Cluster;
 use raftstore::server::ServerCluster;
-use tikv::util::HandyRwLock;
-use super::util::new_raft_storage_with_store_count;
+use tikv::server::readpool::{self, ReadPool};
 use tikv::storage::config::Config;
 use tikv::storage::engine;
-use tikv::server::readpool::{self, ReadPool};
+use tikv::storage::mvcc::{self, MAX_TXN_WRITE_SIZE};
+use tikv::storage::txn;
+use tikv::storage::{self, make_key, Key, KvPair, Mutation, Value};
+use tikv::util::HandyRwLock;
 use tikv::util::worker::FutureWorker;
 
 #[derive(Clone)]
@@ -108,9 +108,9 @@ impl AssertionStorage {
 
     fn expect_not_leader_or_stale_command(&self, err: storage::Error) {
         match err {
-            storage::Error::Txn(txn::Error::Mvcc(mvcc::Error::Engine(
-                engine::Error::Request(ref e),
-            )))
+            storage::Error::Txn(txn::Error::Mvcc(mvcc::Error::Engine(engine::Error::Request(
+                ref e,
+            ))))
             | storage::Error::Txn(txn::Error::Engine(engine::Error::Request(ref e)))
             | storage::Error::Engine(engine::Error::Request(ref e)) => {
                 assert!(

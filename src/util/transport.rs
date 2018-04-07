@@ -11,12 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::{error, io, thread};
+use super::metrics::*;
 use std::fmt::Debug;
 use std::marker::PhantomData;
 use std::sync::mpsc;
 use std::time::Duration;
-use super::metrics::*;
+use std::{error, io, thread};
 
 use mio;
 
@@ -155,8 +155,8 @@ pub type SyncSendCh<T> = RetryableSendCh<T, mpsc::SyncSender<T>>;
 
 #[cfg(test)]
 mod tests {
-    use std::thread;
     use std::sync::mpsc::Receiver;
+    use std::thread;
     use std::time::Duration;
 
     use mio::{EventLoop, EventLoopConfig, Handler};

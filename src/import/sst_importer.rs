@@ -19,9 +19,9 @@ use std::sync::Mutex;
 use std::sync::atomic::{AtomicUsize, Ordering};
 
 use crc::crc32::{self, Hasher32};
-use uuid::Uuid;
 use kvproto::importpb::*;
 use rocksdb::{IngestExternalFileOptions, DB};
+use uuid::Uuid;
 
 use util::collections::HashMap;
 use util::rocksdb::{get_cf_handle, prepare_sst_for_ingestion, validate_sst_for_ingestion};

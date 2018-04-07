@@ -17,12 +17,11 @@ use std::time::Duration;
 use prometheus::{self, CounterVec, Encoder, TextEncoder};
 
 lazy_static! {
-    pub static ref CHANNEL_FULL_COUNTER_VEC: CounterVec =
-        register_counter_vec!(
-            "tikv_channel_full_total",
-            "Total number of channel full errors.",
-            &["type"]
-        ).unwrap();
+    pub static ref CHANNEL_FULL_COUNTER_VEC: CounterVec = register_counter_vec!(
+        "tikv_channel_full_total",
+        "Total number of channel full errors.",
+        &["type"]
+    ).unwrap();
 }
 
 /// `run_prometheus` runs a background prometheus client.
